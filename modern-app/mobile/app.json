@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Debonairs Mobile",
+    "slug": "debonairs-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#121214"
+      }
+    },
+    "web": {
+      "backgroundColor": "#121214"
+    }
+  }
+}

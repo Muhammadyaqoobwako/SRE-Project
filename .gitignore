@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+dist/
+web-build/
+test-results/
+playwright-report/
+.system_generated/
+*.log
+database.sqlite

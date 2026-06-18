@@ -1,0 +1,13 @@
+{
+  "name": "mcp-mongodb",
+  "version": "1.0.0",
+  "description": "MCP MongoDB Server for database query and write operations",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  }
+}

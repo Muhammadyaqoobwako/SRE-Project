@@ -1,0 +1,60 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-filesystem/src/server.js"
+      ],
+      "env": {}
+    },
+    "github": {
+      "command": "node",
+      "args": [
+        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-github/src/server.js"
+      ],
+      "env": {}
+    },
+    "jira": {
+      "command": "node",
+      "args": [
+        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-jira/src/server.js"
+      ],
+      "env": {}
+    },
+    "docker": {
+      "command": "node",
+      "args": [
+        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-docker/src/server.js"
+      ],
+      "env": {}
+    },
+    "vercel": {
+      "command": "node",
+      "args": [
+        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-vercel/src/server.js"
+      ],
+      "env": {}
+    },
+    "web": {
+      "command": "node",
+      "args": [
+        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-web/src/server.js"
+      ],
+      "env": {}
+    },
+    "mongodb": {
+      "command": "node",
+      "args": [
+        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-mongodb/src/server.js"
+      ],
+      "env": {}
+    },
+    "playwright": {
+      "command": "node",
+      "args": [
+        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-playwright/src/server.js"
+      ],
+      "env": {}
+    }
+  }
+}

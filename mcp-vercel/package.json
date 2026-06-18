@@ -1,0 +1,10 @@
+{
+  "name": "mcp-vercel",
+  "version": "1.0.0",
+  "description": "MCP Vercel Server for project deployments",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js"
+  }
+}

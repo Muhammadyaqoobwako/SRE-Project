@@ -1,0 +1,10 @@
+{
+  "name": "mcp-github",
+  "version": "1.0.0",
+  "description": "MCP GitHub Server for repository operations",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js"
+  }
+}

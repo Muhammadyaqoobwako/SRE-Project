@@ -1,0 +1,10 @@
+{
+  "name": "mcp-filesystem",
+  "version": "1.0.0",
+  "description": "MCP Filesystem Server for file operations",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js"
+  }
+}

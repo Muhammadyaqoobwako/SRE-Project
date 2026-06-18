@@ -1,0 +1,10 @@
+{
+  "name": "mcp-jira",
+  "version": "1.0.0",
+  "description": "MCP Jira Server for issue tracking operations",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js"
+  }
+}

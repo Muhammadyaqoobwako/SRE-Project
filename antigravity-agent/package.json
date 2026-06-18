@@ -1,0 +1,13 @@
+{
+  "name": "antigravity-agent",
+  "version": "1.0.0",
+  "description": "Orchestrator Agent for migrating legacy apps using MCP",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "analyze": "node src/index.js analyze",
+    "migrate": "node src/index.js migrate",
+    "deploy": "node src/index.js deploy"
+  }
+}
