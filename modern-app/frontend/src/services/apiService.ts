@@ -47,7 +47,10 @@ class ApiService {
       return {
         success: true,
         token: res.data.token,
-        cashier: { username: res.data.cashier || username, role: 'cashier' }
+        cashier: {
+          username: (res.data.cashier && res.data.cashier.username) || username,
+          role: (res.data.cashier && res.data.cashier.role) || 'cashier'
+        }
       };
     }
     return { success: false, message: res.data.message || 'Authentication failed' };

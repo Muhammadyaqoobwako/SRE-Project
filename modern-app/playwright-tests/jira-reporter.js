@@ -88,8 +88,12 @@ class JiraReporter {
       }
 
       const searchData = await searchRes.json();
-      if (searchData.issues && searchData.issues.length > 0) {
-        console.log(`[JiraReporter] Duplicate open ticket found: ID ${searchData.issues[0].id}. Skipping Bug creation.`);
+      const expectedSummary = `[AUTO][PLAYWRIGHT] Failed Scenario - ${testTitle}`;
+      const duplicate = searchData.issues && searchData.issues.find(issue => {
+        return issue.fields && issue.fields.summary === expectedSummary;
+      });
+      if (duplicate) {
+        console.log(`[JiraReporter] Duplicate open ticket found: Key ${duplicate.key}. Skipping Bug creation.`);
         return;
       }
 
