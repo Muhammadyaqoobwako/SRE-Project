@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const menuItemRoutes = require('./routes/menuItemRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // REST API Endpoints
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/menu', menuItemRoutes);
 
 // Health check endpoint
 app.get('/api/status', (req, res) => {

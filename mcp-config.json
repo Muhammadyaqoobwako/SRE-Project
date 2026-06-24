@@ -21,13 +21,6 @@
       ],
       "env": {}
     },
-    "docker": {
-      "command": "node",
-      "args": [
-        "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-docker/src/server.js"
-      ],
-      "env": {}
-    },
     "vercel": {
       "command": "node",
       "args": [
@@ -47,7 +40,10 @@
       "args": [
         "c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/mcp-mongodb/src/server.js"
       ],
-      "env": {}
+      "env": {
+        "MONGODB_URI": "mongodb+srv://Yaqoob:Yaqoob@cluster0.ikvqeut.mongodb.net",
+        "MONGODB_DB_NAME": "MCP_project"
+      }
     },
     "playwright": {
       "command": "node",

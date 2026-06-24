@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView, StatusBar } from 'react-native';
+import { StyleSheet, View, SafeAreaView, StatusBar, Platform, Alert } from 'react-native';
 import { AuthProvider, useAuth } from './src/context/AuthContext';
 import { CartProvider } from './src/context/CartContext';
 import { LoginScreen } from './src/screens/LoginScreen';
@@ -10,6 +10,36 @@ import { ShoppingCartScreen } from './src/screens/ShoppingCartScreen';
 import { OrderHistoryScreen } from './src/screens/OrderHistoryScreen';
 import { UserProfileScreen } from './src/screens/UserProfileScreen';
 import { AdminDashboardScreen } from './src/screens/AdminDashboardScreen';
+import { AdminMenuScreen } from './src/screens/AdminMenuScreen';
+
+if (Platform.OS === 'web') {
+  Alert.alert = (title, message, buttons) => {
+    const text = message ? `${title}\n${message}` : title;
+    if (buttons && buttons.length > 0) {
+      if (buttons.length > 1) {
+        const hasCancel = buttons.some(b => b.style === 'cancel');
+        if (hasCancel) {
+          const result = window.confirm(text);
+          if (result) {
+            const okButton = buttons.find(b => b.style !== 'cancel');
+            if (okButton && okButton.onPress) okButton.onPress();
+          } else {
+            const cancelButton = buttons.find(b => b.style === 'cancel');
+            if (cancelButton && cancelButton.onPress) cancelButton.onPress();
+          }
+        } else {
+          window.alert(text);
+          if (buttons[0] && buttons[0].onPress) buttons[0].onPress();
+        }
+      } else {
+        window.alert(text);
+        if (buttons[0] && buttons[0].onPress) buttons[0].onPress();
+      }
+    } else {
+      window.alert(text);
+    }
+  };
+}
 
 interface FoodItem {
   id: string;
@@ -66,6 +96,9 @@ const AppNavigator: React.FC = () => {
       )}
       {currentScreen === 'admin' && (
         <AdminDashboardScreen onNavigate={navigateTo} />
+      )}
+      {currentScreen === 'menu' && (
+        <AdminMenuScreen onNavigate={navigateTo} />
       )}
     </View>
   );

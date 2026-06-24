@@ -1,7 +1,7 @@
 {
   "name": "mcp-docker",
   "version": "1.0.0",
-  "description": "MCP Docker Server for container operations",
+  "description": "MCP Docker Server for container management",
   "main": "src/server.js",
   "type": "commonjs",
   "scripts": {

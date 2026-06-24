@@ -28,14 +28,12 @@ test.describe('Modernized Fast-Food System Frontend E2E Tests', () => {
     await usernameInput.fill('dorry');
     await passwordInput.fill('dorry');
 
-    // Setup dialog listener promise
-    const dialogPromise = page.waitForEvent('dialog');
+    // Setup dialog listener and click login concurrently
+    const [dialog] = await Promise.all([
+      page.waitForEvent('dialog'),
+      loginButton.click()
+    ]);
 
-    // Click login button
-    await loginButton.click();
-
-    // Await dialog and verify
-    const dialog = await dialogPromise;
     expect(dialog.message()).toContain('WELCOME TO');
     await dialog.accept();
 
@@ -53,9 +51,10 @@ test.describe('Modernized Fast-Food System Frontend E2E Tests', () => {
     await usernameInput.fill('dorry');
     await passwordInput.fill('dorry');
 
-    const dialogPromise = page.waitForEvent('dialog');
-    await loginButton.click();
-    const dialog = await dialogPromise;
+    const [dialog] = await Promise.all([
+      page.waitForEvent('dialog'),
+      loginButton.click()
+    ]);
     await dialog.accept();
 
     // Click on Admin Board option
@@ -78,9 +77,10 @@ test.describe('Modernized Fast-Food System Frontend E2E Tests', () => {
     await usernameInput.fill('dorry');
     await passwordInput.fill('wrongpassword');
 
-    const dialogPromise = page.waitForEvent('dialog');
-    await loginButton.click();
-    const dialog = await dialogPromise;
+    const [dialog] = await Promise.all([
+      page.waitForEvent('dialog'),
+      loginButton.click()
+    ]);
     expect(dialog.message()).toContain('INVALID PASSWORD OR USERNAME');
     await dialog.accept();
   });

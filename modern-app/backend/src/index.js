@@ -10,10 +10,10 @@ const Cashier = require('./models/Cashier');
 const PORT = process.env.PORT || 5000;
 
 async function startServer() {
-  // Establish connection to MongoDB
+  // Establish connection to database
   await connectDB();
 
-  // Seed default cashiers if they do not exist (matching legacy authentication credentials)
+  // Seed default cashiers if they do not exist
   try {
     const cashiersToSeed = [
       { username: 'dorry', password: 'dorry', role: 'cashier' },
@@ -35,10 +35,8 @@ async function startServer() {
 
   // Start HTTP API listener
   app.listen(PORT, () => {
-    console.log(`==================================================`);
-    console.log(`Modernized Fast-Food Backend listening on port ${PORT}`);
-    console.log(`API URL: http://localhost:${PORT}/api`);
-    console.log(`==================================================`);
+    console.log(`Modern API Server listening on port ${PORT}`);
+    console.log(`Health check: http://localhost:${PORT}/api/status`);
   });
 }
 

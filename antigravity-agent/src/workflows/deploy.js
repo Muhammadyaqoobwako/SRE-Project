@@ -2,70 +2,63 @@ const path = require('path');
 const { MCPServerClient } = require('../agent');
 
 async function runDeploy() {
-  console.log("=== Starting Deploy Workflow ===");
+  console.log("=== Starting Deploy Workflow (Vercel Only) ===");
 
-  const dockerClient = new MCPServerClient("docker", "mcp-docker/src/server.js");
   const vercelClient = new MCPServerClient("vercel", "mcp-vercel/src/server.js");
 
   try {
-    console.log("Launching Docker MCP...");
-    await dockerClient.start();
     console.log("Launching Vercel MCP...");
     await vercelClient.start();
 
-    // 1. Build backend Docker Image
-    const backendPath = path.resolve(__dirname, '../../../modern-app/backend');
-    const backendDockerfile = path.join(backendPath, 'Dockerfile');
-    console.log(`Building Docker Image from: ${backendDockerfile}`);
-    
-    const buildResult = await dockerClient.callTool("buildImage", {
-      dockerfilePath: backendDockerfile,
-      tag: "modern-inventory-backend:latest"
-    });
-    console.log(buildResult.content[0].text);
-
-    // 2. Run backend Docker Container
-    console.log("Running backend container...");
-    const runResult = await dockerClient.callTool("runContainer", {
-      image: "modern-inventory-backend:latest",
-      name: "modern-backend-service",
-      ports: ["5000:5000"]
-    });
-    console.log(runResult.content[0].text);
-
-    // Extract container ID/Name from run output (in a real scenario, or use name)
-    const containerName = "modern-backend-service";
-
-    // 3. Verify container logs
-    console.log(`Fetching logs for ${containerName} to verify startup...`);
-    const logsResult = await dockerClient.callTool("getLogs", {
-      containerId: containerName
-    });
-    console.log(logsResult.content[0].text);
-
-    // 4. Deploy Frontend to Vercel
+    // 1. Deploy Frontend to Vercel
     const frontendPath = path.resolve(__dirname, '../../../modern-app/frontend');
     console.log(`Deploying frontend to Vercel from: ${frontendPath}`);
     
-    const deployResult = await vercelClient.callTool("deployProject", {
+    const frontendDeployResult = await vercelClient.callTool("deployProject", {
       projectPath: frontendPath
     });
-    const deployData = JSON.parse(deployResult.content[0].text);
-    console.log(`Deployment created successfully. URL: ${deployData.url}`);
+    const frontendData = JSON.parse(frontendDeployResult.content[0].text);
+    console.log(`Frontend deployment created. URL: ${frontendData.url}`);
 
-    // 5. Check deployment status
-    console.log(`Checking deployment status for ID: ${deployData.id}`);
-    const statusResult = await vercelClient.callTool("getDeployment", {
-      deploymentId: deployData.id
+    // 2. Deploy Backend to Vercel (as serverless functions)
+    const backendPath = path.resolve(__dirname, '../../../modern-app/backend');
+    console.log(`Deploying backend to Vercel from: ${backendPath}`);
+    
+    const backendDeployResult = await vercelClient.callTool("deployProject", {
+      projectPath: backendPath
     });
-    const statusData = JSON.parse(statusResult.content[0].text);
-    console.log(`Vercel Deployment final status: ${statusData.status}`);
+    const backendData = JSON.parse(backendDeployResult.content[0].text);
+    console.log(`Backend deployment created. URL: ${backendData.url}`);
 
-    console.log("\nDeployment completed successfully! The platform is now fully modernized.");
+    // 3. Check frontend deployment status
+    if (frontendData.id) {
+      console.log(`Checking frontend deployment status for ID: ${frontendData.id}`);
+      const frontendStatus = await vercelClient.callTool("getDeployment", {
+        deploymentId: frontendData.id
+      });
+      const frontendStatusData = JSON.parse(frontendStatus.content[0].text);
+      console.log(`Frontend Vercel Deployment status: ${frontendStatusData.status}`);
+    }
+
+    // 4. Check backend deployment status
+    if (backendData.id) {
+      console.log(`Checking backend deployment status for ID: ${backendData.id}`);
+      const backendStatus = await vercelClient.callTool("getDeployment", {
+        deploymentId: backendData.id
+      });
+      const backendStatusData = JSON.parse(backendStatus.content[0].text);
+      console.log(`Backend Vercel Deployment status: ${backendStatusData.status}`);
+    }
+
+    // 5. List all Vercel projects
+    console.log("Listing all Vercel projects...");
+    const listResult = await vercelClient.callTool("listProjects");
+    console.log(`Vercel projects: ${listResult.content[0].text}`);
+
+    console.log("\nDeployment completed successfully! Both frontend and backend deployed to Vercel.");
   } catch (err) {
     console.error("Error running Deploy workflow:", err.message);
   } finally {
-    dockerClient.stop();
     vercelClient.stop();
     console.log("=== Deploy Workflow Finished ===\n");
   }

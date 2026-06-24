@@ -59,6 +59,13 @@ export const AdminDashboardScreen: React.FC<AdminDashboardScreenProps> = ({ onNa
           </View>
         ) : report ? (
           <View>
+            <TouchableOpacity 
+              style={styles.menuItemsBtn} 
+              onPress={() => onNavigate('menu')}
+            >
+              <Text style={styles.menuItemsBtnText}>Manage Menu Items 🍔</Text>
+            </TouchableOpacity>
+
             {/* STAT CARDS */}
             <View style={styles.statsRow}>
               <View style={styles.statCard}>
@@ -115,6 +122,24 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20
+  },
+  menuItemsBtn: {
+    backgroundColor: '#FF6B35',
+    borderRadius: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    marginBottom: 20,
+    shadowColor: '#FF6B35',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  menuItemsBtnText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold'
   },
   header: {
     flexDirection: 'row',

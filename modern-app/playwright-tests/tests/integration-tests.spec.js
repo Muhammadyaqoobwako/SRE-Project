@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 test.describe('Modernized Fast-Food System Integration API Tests [KAN-3]', () => {
 
   test('TC-SEC-01: Successful Cashier Login', async ({ request }) => {
-    const response = await request.post('http://localhost:5000/api/auth/login', {
+    const response = await request.post('http://127.0.0.1:5000/api/auth/login', {
       data: {
         username: 'dorry',
         password: 'dorry'
@@ -17,7 +17,7 @@ test.describe('Modernized Fast-Food System Integration API Tests [KAN-3]', () =>
   });
 
   test('TC-SEC-02: Failed Login (Invalid Credentials)', async ({ request }) => {
-    const response = await request.post('http://localhost:5000/api/auth/login', {
+    const response = await request.post('http://127.0.0.1:5000/api/auth/login', {
       data: {
         username: 'dorry',
         password: 'wrongpassword'
@@ -31,14 +31,14 @@ test.describe('Modernized Fast-Food System Integration API Tests [KAN-3]', () =>
 
   test('TC-CALC-01: Correct Chips Price Multiplication & TC-DB-01: Category Routing', async ({ request }) => {
     // 1. Log in to get token
-    const loginRes = await request.post('http://localhost:5000/api/auth/login', {
+    const loginRes = await request.post('http://127.0.0.1:5000/api/auth/login', {
       data: { username: 'dorry', password: 'dorry' }
     });
     const loginBody = await loginRes.json();
     const token = loginBody.token;
 
     // 2. Submit order for Chips with quantity 3 and unit price 4.5
-    const orderResponse = await request.post('http://localhost:5000/api/orders', {
+    const orderResponse = await request.post('http://127.0.0.1:5000/api/orders', {
       headers: {
         'Authorization': `Bearer ${token}`
       },
@@ -64,14 +64,14 @@ test.describe('Modernized Fast-Food System Integration API Tests [KAN-3]', () =>
 
   test('TC-REP-01: Cashier Sales Summary Retrieval', async ({ request }) => {
     // 1. Log in to get token
-    const loginRes = await request.post('http://localhost:5000/api/auth/login', {
+    const loginRes = await request.post('http://127.0.0.1:5000/api/auth/login', {
       data: { username: 'dorry', password: 'dorry' }
     });
     const loginBody = await loginRes.json();
     const token = loginBody.token;
 
     // 2. Fetch sales report
-    const reportRes = await request.get('http://localhost:5000/api/orders/reports/sales', {
+    const reportRes = await request.get('http://127.0.0.1:5000/api/orders/reports/sales', {
       headers: {
         'Authorization': `Bearer ${token}`
       }

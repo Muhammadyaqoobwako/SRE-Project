@@ -81,6 +81,29 @@ class ApiService {
     const res = await this.request('DELETE', `/orders/${id}`, undefined, token);
     return res.ok && res.data.success;
   }
+
+  async getMenuItems(token: string | null) {
+    const res = await this.request('GET', '/menu', undefined, token);
+    if (res.ok && res.data.success) {
+      return res.data.data;
+    }
+    return [];
+  }
+
+  async createMenuItem(payload: any, token: string | null) {
+    const res = await this.request('POST', '/menu', payload, token);
+    return { success: res.ok && res.data.success, message: res.data.message };
+  }
+
+  async updateMenuItem(id: string, payload: any, token: string | null) {
+    const res = await this.request('PUT', `/menu/${id}`, payload, token);
+    return { success: res.ok && res.data.success, message: res.data.message };
+  }
+
+  async deleteMenuItem(id: string, token: string | null) {
+    const res = await this.request('DELETE', `/menu/${id}`, undefined, token);
+    return res.ok && res.data.success;
+  }
 }
 
 export default new ApiService();

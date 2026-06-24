@@ -11,7 +11,7 @@ module.exports = defineConfig({
     ['./jira-reporter.js']
   ],
   use: {
-    baseURL: 'http://localhost',
+    baseURL: 'http://localhost:8081',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
