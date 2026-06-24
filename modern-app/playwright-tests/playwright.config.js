@@ -8,6 +8,7 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['list'],
+    ['html', { open: 'never' }],
     ['./jira-reporter.js']
   ],
   use: {

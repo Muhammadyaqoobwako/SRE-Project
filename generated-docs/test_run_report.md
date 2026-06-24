@@ -8,6 +8,9 @@
 **Failed**: 0  
 **Status**: 🟢 **ALL TESTS PASSED**
 
+### 📊 Interactive Reports
+* [Playwright HTML Report](file:///c:/Users/yaqoob/Desktop/Automation/ai-modernization-platform/modern-app/playwright-tests/playwright-report/index.html) (Click to open directly in your browser)
+
 ---
 
 ## 1. Executive Summary

@@ -143,7 +143,8 @@ async function callLLM(systemInstruction, userPrompt) {
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(requestBody),
+      signal: AbortSignal.timeout(15000)
     });
 
     if (!response.ok) {
