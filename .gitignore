@@ -8,3 +8,8 @@ playwright-report/
 .system_generated/
 *.log
 database.sqlite
+Usersyaqoob.git-credentials-food
+scratch/
+whoami.js
+search_issues.js
+create_jira_test_cases.js

@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { useApp } from '../state/AppContext';
 import { COLORS } from '../styles/theme';
+import { View } from 'react-native';
 
 // Screens
 import { LoginScreen } from '../screens/LoginScreen';
@@ -80,6 +81,11 @@ const TabNavigator = () => {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
+        headerLeft: () => (
+          <View style={{ marginLeft: 15, width: 34, height: 34, borderRadius: 17, borderWidth: 1.5, borderColor: '#FF5A36', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1E1E24' }}>
+            <Ionicons name="restaurant" size={16} color="#FF5A36" />
+          </View>
+        ),
       })}
     >
       <Tab.Screen name="HomeTab" component={HomeScreen} options={{ title: 'Menu' }} />

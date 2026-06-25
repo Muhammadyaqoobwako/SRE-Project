@@ -65,6 +65,17 @@
     "_id": "mzs3ztamqldq1q6"
   },
   {
+    "name": "Original Burger",
+    "price": 8.5,
+    "sizeOrWeight": "150g",
+    "category": "Burger",
+    "options": [
+      "Beef",
+      "Chicken"
+    ],
+    "_id": "lfq6v96mqldq1q6_orig"
+  },
+  {
     "name": "Cheese Burger",
     "price": 9.5,
     "sizeOrWeight": "180g",
@@ -143,19 +154,5 @@
       "Tomato Sauce"
     ],
     "_id": "b6oj74gmqldq1q7"
-  },
-  {
-    "category": "Pizza",
-    "name": "Playwright Pizza",
-    "price": 12.99,
-    "sizeOrWeight": "Large size",
-    "options": [
-      "Extra Pepperoni",
-      "Extra Cheese"
-    ],
-    "isAvailable": true,
-    "_id": "6a3bff1517433d34deffcdf7",
-    "createdAt": "2026-06-24T16:00:21.358Z",
-    "updatedAt": "2026-06-24T16:00:21.358Z"
   }
 ]
